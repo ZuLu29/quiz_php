@@ -19,6 +19,7 @@ $questions = [
 ];
 
 
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,6 +29,23 @@ $questions = [
     <title>PHP QUIZ</title>
 </head>
 <body>
-    
+    <h2>PHP QUIZ</h2>
+    <form action="" method="post">
+        <label for="uname">Username:</label>
+        <input type="text" id="uname" name="uname" placeholder="username" required>
+        <br>
+        <?php foreach($questions as $index => $question): ?>
+            <fieldset>
+                <legend><?php echo $question['question']; ?></legend>
+                <?php foreach ($question['options'] as $optionIndex => $option):?>
+                    <label>
+                        <input type="radio" name="question<?php echo $index; ?>" value="<?php echo $optionIndex; ?>">
+                        <?php echo $option; ?>
+                    </label><br>
+                <? endforeach; ?>
+            </fieldset>
+        <? endforeach; ?>
+        <button type="submit">Submit</button>
+    </form>
 </body>
 </html>
