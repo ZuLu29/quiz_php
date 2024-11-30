@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     $username = htmlspecialchars($_POST['uname']);
     $query = "insert into leaderboard (username, score) values(?, ?)";
-    $stmt = mysqli_prepare($sonn, $query); 
+    $stmt = mysqli_prepare($conn, $query); 
     
     if ($stmt) {
         mysqli_stmt_bind_param($stmt, "si", $username, $score);
@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             echo "Error saving score: " . mysqli_stmt_error($stmt);
         } else {
             echo "<h2>Your Score: $score/" . count($questions) . "</h2>";
-            echo '<a href="index.php">Try Again</a> | <a href="leaderboard.php">View Leaderboard</a>';
+            echo '<a href="index.php">Try Again</a> | <a href="leaderboards.php">View Leaderboard</a>';
         }
 
         mysqli_stmt_close($stmt);
