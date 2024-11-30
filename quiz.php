@@ -57,25 +57,38 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PHP QUIZ</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-    <h2>PHP QUIZ</h2>
-    <form action="" method="post">
-        <label for="uname">Username:</label>
-        <input type="text" id="uname" name="uname" placeholder="username" required>
-        <br>
-        <?php foreach($questions as $index => $question): ?>
-            <fieldset>
-                <legend><?php echo $question['question']; ?></legend>
-                <?php foreach ($question['options'] as $optionIndex => $option):?>
-                    <label>
-                        <input type="radio" name="question<?php echo $index; ?>" value="<?php echo $optionIndex; ?>">
-                        <?php echo $option; ?>
-                    </label><br>
-                <?php endforeach; ?>
-            </fieldset>
-        <?php endforeach; ?>
-        <button type="submit">Submit</button>
-    </form>
+<body class="bg-light">
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">PHP QUIZ</h2>
+        <form action="" method="post" class="p-4 bg-white rounded shadow">
+            <div class="mb-3">
+                <label for="uname" class="form-label">Username:</label>
+                <input type="text" id="uname" name="uname" class="form-control" placeholder="Enter your username" required>
+            </div>
+            <?php foreach ($questions as $index => $question): ?>
+                <fieldset class="mb-4">
+                    <legend class="h5"><?php echo $question['question']; ?></legend>
+                    <?php foreach ($question['options'] as $optionIndex => $option): ?>
+                        <div class="form-check">
+                            <input 
+                                type="radio" 
+                                name="question<?php echo $index; ?>" 
+                                id="question<?php echo $index . '_' . $optionIndex; ?>" 
+                                value="<?php echo $optionIndex; ?>" 
+                                class="form-check-input">
+                            <label 
+                                for="question<?php echo $index . '_' . $optionIndex; ?>" 
+                                class="form-check-label">
+                                <?php echo $option; ?>
+                            </label>
+                        </div>
+                    <?php endforeach; ?>
+                </fieldset>
+            <?php endforeach; ?>
+            <button type="submit" class="btn btn-primary w-100">Submit</button>
+        </form>
+    </div>
 </body>
 </html>
